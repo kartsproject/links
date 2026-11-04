@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>K예술영재 프로젝트 | 링크 허브</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{
+    --ink:#212326; --gray:#5A6065; --faint:#8A8F94;
+    --line:#EAEAEA; --dash:#DAD7D0; --bg:#FFFFFF; --soft:#F7F6F2;
+    --yel:#F2C230; --yel-lt:#FDF3D0;
+    --music:#5E95C9; --dance:#D46F92; --trad:#D9774A; --art:#5FA85A; --all:#5A6065;
+    --r:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:84px}
+  body{font-family:"Pretendard Variable",Pretendard,"Noto Sans KR",-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    font-size:16px;line-height:1.55;color:var(--ink);background:var(--bg);word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  :focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:6px}
+  .wrap{width:min(1180px,calc(100% - 48px));margin:0 auto}
+
+  /* ── 머리 ── */
+  .hero{padding:56px 0 28px}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--gray)}
+  h1{font-size:clamp(34px,5vw,52px);font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-top:10px}
+  h1 .mk{background:linear-gradient(transparent 62%,var(--yel) 62%,var(--yel) 92%,transparent 92%);padding:0 2px}
+  .lead{margin-top:14px;color:var(--gray);font-size:17px}
+  .search{margin-top:28px;position:relative;max-width:560px}
+  .search input{width:100%;height:54px;border:1.5px solid var(--ink);border-radius:999px;padding:0 54px 0 52px;font:inherit;font-size:16px;background:#fff;color:var(--ink)}
+  .search input::placeholder{color:var(--faint)}
+  .search input:focus{outline:none;box-shadow:0 0 0 4px var(--yel-lt)}
+  .search svg{position:absolute;left:20px;top:50%;transform:translateY(-50%)}
+  .search kbd{position:absolute;right:16px;top:50%;transform:translateY(-50%);font:600 12px/1 inherit;font-family:inherit;color:var(--faint);border:1px solid var(--line);border-radius:6px;padding:5px 7px}
+  .search .clear{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;display:none;font-size:18px;color:var(--gray)}
+  .search.has .clear{display:block}.search.has kbd{display:none}
+
+  /* ── 상단 메뉴 ── */
+  .nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:12px 0}
+  .nav .wrap::-webkit-scrollbar{display:none}
+  .nav a{flex:none;font-size:14.5px;font-weight:600;color:var(--gray);padding:8px 14px;border-radius:999px;white-space:nowrap}
+  .nav a:hover{color:var(--ink);background:var(--soft)}
+  .nav a.on{color:var(--ink);background:var(--yel-lt)}
+
+  /* ── 구간 ── */
+  section{padding:56px 0 8px}
+  .sec-hd{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:18px;margin-bottom:24px;border-bottom:2px dashed var(--dash)}
+  .sec-hd h2{font-size:26px;font-weight:800;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+  .sec-hd h2 .no{font-size:13px;font-weight:700;color:var(--ink);background:var(--yel);border-radius:999px;width:26px;height:26px;display:inline-grid;place-items:center}
+  .sec-hd p{color:var(--gray);font-size:14.5px;margin-top:4px}
+
+  /* 태그 */
+  .tag{display:inline-flex;align-items:center;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap;line-height:1.4}
+  .t-open{border:1px solid var(--line);color:var(--gray)}
+  .t-code{background:var(--yel-lt);color:#7A5B00}
+  .t-admin{background:var(--ink);color:#fff}
+  .t-closed{background:#F1F1F1;color:var(--faint)}
+
+  /* ── 사이트 카드 ── */
+  .sites{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+  .site{min-width:0;border:1.5px solid var(--ink);border-radius:var(--r);padding:24px 24px 20px;display:flex;flex-direction:column;background:#fff}
+  .site .kind{font-size:12.5px;font-weight:700;color:var(--gray);letter-spacing:.04em}
+  .site h3{font-size:22px;font-weight:800;margin-top:6px;letter-spacing:-.01em}
+  .site .desc{color:var(--gray);font-size:14.5px;margin-top:8px;flex:1}
+  .site .links{margin-top:18px;display:flex;flex-direction:column;gap:8px}
+  .lk{display:flex;align-items:center;gap:10px;padding:12px 12px 12px 14px;border-radius:10px;background:var(--soft);transition:background .15s}
+  .lk:hover{background:var(--yel-lt)}
+  .lk .nm{font-weight:700;font-size:15px}
+  .lk .url{font-size:12.5px;color:var(--faint);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .lk .tx{flex:1;min-width:0;display:flex;flex-direction:column}
+  .lk .arrow{flex:none;color:var(--gray)}
+  .copy{flex:none;width:32px;height:32px;border-radius:8px;display:grid;place-items:center;color:var(--faint)}
+  .copy:hover{background:#fff;color:var(--ink)}
+
+  /* ── 분야 선택 ── */
+  .chips{display:flex;gap:6px;flex-wrap:wrap}
+  .chip{font-size:14px;font-weight:600;padding:7px 14px;border-radius:999px;border:1px solid var(--line);color:var(--gray);display:inline-flex;align-items:center;gap:7px}
+  .chip:hover{border-color:var(--ink);color:var(--ink)}
+  .chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+  .dot{width:8px;height:8px;border-radius:50%;flex:none;display:inline-block}
+
+  /* ── 워크숍 자료 ── */
+  .fields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+  .field{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff}
+  .field-hd{display:flex;align-items:center;gap:10px;padding:16px 18px;border-bottom:1px solid var(--line);border-top:4px solid var(--c)}
+  .field-hd b{font-size:18px;font-weight:800}
+  .field-hd span{margin-left:auto;font-size:12.5px;color:var(--faint)}
+  .grp{padding:14px 18px 6px}
+  .grp + .grp{border-top:1px dashed var(--dash)}
+  .grp-t{font-size:12px;font-weight:700;color:var(--faint);letter-spacing:.06em;margin-bottom:6px}
+  .item{display:flex;align-items:center;gap:8px;padding:9px 0;min-height:44px}
+  .item + .item{border-top:1px solid #F3F3F3}
+  .item .nm{flex:1;font-size:14.5px;font-weight:600;line-height:1.35}
+  .item .nm .tag{margin-left:6px;vertical-align:1px}
+  .btns{display:flex;gap:4px;flex:none}
+  .b{font-size:13px;font-weight:700;padding:6px 10px;border-radius:8px;border:1px solid var(--line);white-space:nowrap;background:#fff}
+  .b:hover{border-color:var(--ink);background:var(--yel-lt)}
+  .b.pri{background:var(--ink);border-color:var(--ink);color:#fff}
+  .b.pri:hover{background:#000}
+
+  /* ── 평가회의 ── */
+  .mt{border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+  .mt-grp{display:grid;grid-template-columns:150px 1fr}
+  .mt-grp + .mt-grp{border-top:1px solid var(--line)}
+  .mt-f{padding:18px;display:flex;align-items:flex-start;gap:9px;font-weight:800;font-size:16px;background:var(--soft);border-left:4px solid var(--c)}
+  .mt-f .dot{margin-top:8px}
+  .mt-f small{display:block;font-size:12.5px;font-weight:500;color:var(--faint)}
+  .mt-rows{display:flex;flex-direction:column}
+  .mt-row{display:grid;grid-template-columns:150px 180px 1fr;align-items:center;gap:12px;padding:11px 18px;min-height:54px}
+  .mt-row + .mt-row{border-top:1px solid #F3F3F3}
+  .mt-row .rd{font-weight:700;font-size:15px}
+  .mt-row .dt{color:var(--gray);font-size:14.5px;font-variant-numeric:tabular-nums}
+  .mt-row .btns{justify-content:flex-end}
+  .b.off{color:#C4C4C4;border-color:#F0F0F0;cursor:default;background:#fff}
+
+  /* ── 운영 페이지 ── */
+  .ops{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+  .op{border:1px solid var(--line);border-radius:var(--r);padding:20px 20px 14px;background:#fff}
+  .op-hd{display:flex;align-items:center;gap:9px;margin-bottom:4px}
+  .op-hd b{font-size:18px;font-weight:800}
+  .op-hd .fl{font-size:12.5px;font-weight:700;color:var(--c)}
+  .op .desc{color:var(--gray);font-size:14px;margin-bottom:10px}
+  .op .lk{margin-top:6px}
+  .op .lk .tag{flex:none}
+
+  .note{margin-top:14px;font-size:13.5px;color:var(--faint)}
+  .empty{display:none;padding:60px 0;text-align:center;color:var(--gray)}
+  .empty b{display:block;font-size:20px;color:var(--ink);margin-bottom:6px}
+  .hide{display:none!important}
+  mark{background:var(--yel-lt);color:inherit;border-radius:3px;padding:0 1px}
+
+  footer{margin-top:72px;padding:28px 0 48px;border-top:2px dashed var(--dash);color:var(--faint);font-size:13.5px}
+  footer b{color:var(--gray)}
+
+  .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);opacity:0;background:var(--ink);color:#fff;font-size:14px;font-weight:600;padding:12px 18px;border-radius:999px;transition:.25s;pointer-events:none;z-index:50}
+  .toast.on{opacity:1;transform:translate(-50%,0)}
+
+  @media (max-width:1080px){
+    .fields{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .sites{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+  @media (max-width:760px){
+    .wrap{width:calc(100% - 32px)}
+    .hero{padding:36px 0 20px}
+    .search kbd{display:none}
+    section{padding:40px 0 4px}
+    .sec-hd h2{font-size:22px}
+    .sites,.fields,.ops{grid-template-columns:minmax(0,1fr)}
+    .mt-grp{grid-template-columns:1fr}
+    .mt-f{padding:12px 16px;border-left:0;border-top:4px solid var(--c)}
+    .mt-f .dot{margin-top:7px}
+    .mt-row{grid-template-columns:1fr auto;grid-template-areas:"rd btns" "dt btns";gap:0 12px;padding:11px 16px}
+    .mt-row .rd{grid-area:rd}.mt-row .dt{grid-area:dt;font-size:13.5px}.mt-row .btns{grid-area:btns}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero wrap">
+  <p class="eyebrow">2026 K예술영재 프로젝트</p>
+  <h1>프로젝트 <span class="mk">링크 허브</span></h1>
+  <p class="lead">사이트·관리자 페이지·워크숍 자료를 한 곳에서 열어 보세요.</p>
+  <div class="search" id="searchBox">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="text" enterkeyhint="search" placeholder="자료·사이트 이름으로 찾기 (예: 리플렛, 녹취)" aria-label="링크 검색" autocomplete="off">
+    <kbd>/</kbd>
+    <button class="clear" id="clear" type="button" aria-label="검색어 지우기">×</button>
+  </div>
+</header>
+
+<nav class="nav" aria-label="구간 이동">
+  <div class="wrap">
+    <a href="#sites">사이트</a>
+    <a href="#workshop">워크숍 자료</a>
+    <a href="#meetings">평가회의 자료</a>
+    <a href="#ops">운영 페이지</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section id="sites">
+    <div class="sec-hd">
+      <div>
+        <h2><span class="no">1</span>사이트·관리자</h2>
+        <p>홍보 사이트, 아카이빙 사이트, 워크숍 자료실과 각 관리 화면</p>
+      </div>
+    </div>
+    <div class="sites" id="siteList"></div>
+  </section>
+
+  <section id="workshop">
+    <div class="sec-hd">
+      <div>
+        <h2><span class="no">2</span>워크숍 자료</h2>
+        <p>분야별 리플렛·만족도 조사·분석 보고서 (워크숍 자료실과 같은 내용)</p>
+      </div>
+      <div class="chips" data-chips></div>
+    </div>
+    <div class="fields" id="fieldList"></div>
+  </section>
+
+  <section id="meetings">
+    <div class="sec-hd">
+      <div>
+        <h2><span class="no">3</span>평가회의 자료</h2>
+        <p>워크숍 교강사 평가회의 회의록·녹취</p>
+      </div>
+      <div class="chips" data-chips></div>
+    </div>
+    <div class="mt" id="meetingList"></div>
+  </section>
+
+  <section id="ops">
+    <div class="sec-hd">
+      <div>
+        <h2><span class="no">4</span>운영 페이지</h2>
+        <p>심화 멘토링·신청·업무보고 등 운영에 쓰는 페이지</p>
+      </div>
+    </div>
+    <div class="ops" id="opList"></div>
+  </section>
+
+  <div class="empty" id="empty"><b>찾는 링크가 없습니다</b>다른 낱말로 다시 찾아 보세요.</div>
+</main>
+
+<footer class="wrap">
+  <b>2026.11.4 기준</b> · 워크숍 자료와 평가회의 자료는 「K예술영재 프로젝트 워크샵 아카이브」 시트 내용을 옮겨 왔습니다.<br>
+  관리자 주소와 아카이빙 사이트 주소가 함께 담겨 있으니 운영진 안에서만 공유해 주세요.
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ================================================================
+   링크 목록 — 주소가 바뀌면 이 부분만 고치면 됩니다.
+   ================================================================ */
+const FIELDS = [
+  { key:'music', name:'음악',     en:'MUSIC' },
+  { key:'dance', name:'무용',     en:'BALLET' },
+  { key:'trad',  name:'전통예술', en:'TRADITIONAL' },
+  { key:'art',   name:'미술',     en:'ARTS' },
+];
+
+const SITES = [
+  { kind:'홍보 사이트', title:'홈페이지', desc:'일반 대중에게 공개하는 프로젝트 홍보 사이트입니다. 공지사항·언론홍보·갤러리 글은 게시글 관리에서 올립니다.',
+    links:[
+      { name:'홈페이지', url:'https://kartsproject.github.io/home/', tag:'open' },
+      { name:'게시글 관리 (관리자)', url:'https://kartsproject.github.io/home/admin.html', tag:'admin' },
+    ]},
+  { kind:'아카이빙 사이트', title:'아카이빙', desc:'워크숍·심화 멘토링·겨울캠프의 영상·사진·작품을 모아 둔 사이트입니다. 교강사·운영진·발주기관만 접근코드와 이름으로 들어갑니다.',
+    links:[
+      { name:'아카이빙 열람', url:'https://kartsproject.github.io/archive/', tag:'code' },
+      { name:'아카이브 관리자', url:'https://kartsproject.github.io/archive/admin.html', tag:'admin' },
+    ]},
+  { kind:'온라인 자료 공유', title:'워크숍 자료실', desc:'분야별 웹 리플렛·만족도 조사·분석 보고서·평가회의 자료를 모은 페이지입니다. 내용은 연결된 구글 시트에서 고칩니다.',
+    links:[
+      { name:'워크숍 자료실', url:'https://kartsgifted.github.io/workshop/', tag:'open' },
+      { name:'자료실 관리 시트', url:'https://docs.google.com/spreadsheets/d/1wDbUTo4Wxo_t3VJMqVDnKbthBpdQZTgX10wQ7wlpq1M/edit', tag:'admin' },
+      { name:'산출물 공유 드라이브', url:'https://drive.google.com/drive/folders/15Vg11aC4SkJo_d2HJUszuMAkp5zbVMDc', tag:'admin', label:'운영진' },
+    ]},
+];
+
+/* 워크숍 자료: type 'web' = 웹 페이지 열기, 'file' = 드라이브 파일(보기/받기) */
+const D = id => id; // 드라이브 파일 ID
+const WORKSHOP = [
+  { group:'온라인', items:[
+    { name:'웹 리플렛', type:'web', v:{
+        music:'https://k-brainc.github.io/kriga/leaflet/leaflet_m.html',
+        dance:'https://k-brainc.github.io/kriga/leaflet/leaflet_b.html',
+        trad:'https://k-brainc.github.io/kriga/leaflet/leaflet_t.html',
+        art:'https://k-brainc.github.io/kriga/leaflet/leaflet_a.html' }},
+    { name:'만족도 조사 문항', type:'web', status:'마감', v:{
+        music:'https://k-brainc.github.io/kriga/survey/survey_m.html',
+        dance:'https://k-brainc.github.io/kriga/survey/survey_b.html',
+        trad:'https://k-brainc.github.io/kriga/survey/survey_t.html',
+        art:'https://k-brainc.github.io/kriga/survey/survey_a.html' }},
+    { name:'웹 만족도 분석 보고서', type:'web', v:{
+        music:'https://k-brainc.github.io/kriga/survey/report_m.html',
+        dance:'https://k-brainc.github.io/kriga/survey/report_b.html',
+        trad:'https://k-brainc.github.io/kriga/survey/report_t.html',
+        art:'https://k-brainc.github.io/kriga/survey/report_a.html' }},
+  ]},
+  { group:'문서 파일', items:[
+    { name:'리플렛', type:'file', v:{
+        music:D('1Uqj0GWgrQyHuJlO-sloi_R54MTQcDPsp'),
+        dance:D('14NkDIaKCOnEvOv0ZapOYobRwiRLCgbUn'),
+        trad:D('1_e6n1CtpSQiCdyLDXufNpcAALEvSw6ZT'),
+        art:D('1Al1Do0ng8LqXtPxx_YpxKWiX7x-MwHiu') }},
+    { name:'마스터클래스 안내지', type:'file', v:{ music:D('1_zXAlnpoKqUhDXFwWChFc-Zbk-706h3B') }},
+    { name:'연주회 안내지', type:'file', v:{ music:D('1ZNlxJr_31me-RnpvMgB7-cW1-55vakYT') }},
+    { name:'만족도 조사 분석 보고서', type:'file', v:{
+        music:D('1DWH01hbmnI6Q5_csZejIX8OytWyKLQeX'),
+        dance:D('1NkOKKWRjnKESPyCF5gxJEHGGDI6oSJzb'),
+        trad:D('1sdaGmI84anC8sR43WvQK_x8KNJ5NuZwv'),
+        art:D('1tM_O3wf1XOUernl9tBMEtCS9JbBkpc42') }},
+  ]},
+];
+
+/* 평가회의: doc = 회의록 주소, rec = 녹취 드라이브 ID */
+const MEETINGS = [
+  { f:'music', round:'사전회의',    date:'2026-07-27', doc:'https://drive.google.com/file/d/1B_HOupRKs_3ykpGc6t12aIVZYm241naH/view', rec:'1EBCgXUt1gg8PU2Zmdz4LLbf1Bl1uhoyP' },
+  { f:'music', round:'1일차 1차',   date:'2026-08-07', doc:'https://drive.google.com/file/d/1Yg6AHiZlq-CeVzEvmFQMpFTBaj-8kZdJ/view', rec:'1OyuB4B2-Zd0D-W7ciM9JveUNDufTU5U4' },
+  { f:'music', round:'3일차 1차-1', date:'2026-08-21', doc:'', rec:'1zkcZCmb3D-8e2UgXrxU7vCzPa5Bjescb' },
+  { f:'music', round:'3일차 1차-2', date:'2026-08-21', doc:'', rec:'1drWRC4_UCzO9TUUwsjWxLCmYcBZvASKk' },
+  { f:'dance', round:'1일차',       date:'2026-07-17', doc:'', rec:'1OhJ8r_2eTFh5S73uqQUDMCc4UnBiNpPn' },
+  { f:'trad',  round:'1일차',       date:'2026-07-29', doc:'https://docs.google.com/document/d/1cvSKIsA5HNyrSAPmNNIjG3iJs3AVjnJ7x1lOFpvwix8/edit', rec:'1oHVFbwtECGKeEa-rko2RuDZXbP5jUv28' },
+  { f:'trad',  round:'2일차',       date:'2026-08-15', doc:'https://docs.google.com/document/d/1Hxl1SgEBzvRxHQ8S3ge6NZWvfKCQJsXeZKcsDtoyne4/edit', rec:'1kT2nnH6FrTIrHvdS3rvhuH4cui3NhmIz' },
+  { f:'trad',  round:'3일차',       date:'2026-08-17', doc:'https://docs.google.com/document/d/1Q3JU_PCmaesqIo62-kdmRsrs1oUMDf_erSgA_HswMcI/edit', rec:'1VLN0GN7Jv3gnZZH2AdczTgixjUiVwTEg' },
+  { f:'trad',  round:'4일차 1차',   date:'2026-08-23', doc:'https://docs.google.com/document/d/14-TNn1Irm-2izvzGMMcaqdhPzPco3-b0UQd365GUzPs/edit', rec:'1S3EZOgvEGqzLuXqSa7Y3W6PJQ1KjkZcJ' },
+  { f:'trad',  round:'4일차 2차',   date:'2026-08-23', doc:'https://docs.google.com/document/d/1UGJEIxGwMviQmSN4DA_jYD3EPGEOBVvRzRx_y03c4QI/edit', rec:'1BUMWuBCCyWSeU03GzAX7gCR6EjPQuACs' },
+  { f:'art',   round:'1일차 1차',   date:'2026-08-10', doc:'https://docs.google.com/document/d/1giyJt7gzet9hvS_bWWnFsWOTvgK4ejBrUr__Cs1GWKI/edit', rec:'1o-1gtmI20JG4T_WiJCjBOgqd4IUlVtdf' },
+  { f:'art',   round:'1일차 2차',   date:'2026-08-10', doc:'https://docs.google.com/document/d/1NZ_Z5O-T5h6ZIxdJAEr-gGgg3wflYD7MyWe1fMIsnz8/edit', rec:'1ryM9mKYRsn_8c-owihKgoIDi8V_IqigC' },
+  { f:'art',   round:'2일차 1차',   date:'2026-08-12', doc:'https://docs.google.com/document/d/1dtpiMX5mEfgalv1XBDwEWexlnGP7-YGNKXNaUnwzHOU/edit', rec:'14B6sbZMGOsnHCqKeea5X6Jt8PWHgxhMx' },
+  { f:'art',   round:'2일차 2차',   date:'2026-08-12', doc:'https://docs.google.com/document/d/1PbGrmEKKSOe3Wnvir-pnfEzvFsj_VkUpxmdhydHR1o8/edit', rec:'1g14WU3GV1Qg4HPgYJ9pecLulvQTzO-5Z' },
+  { f:'all',   round:'전체 분야',   date:'2026-08-29', doc:'https://docs.google.com/document/d/1UXlKWXWWFXPxmWltMKtFqRKN5EqrQUv_ng8JfcXrGQY/edit', rec:'1dX9OqC8chv_AW_DOnlZ0l4YZnOhZUMV3' },
+];
+
+const OPS = [
+  { f:'music', title:'음악분야 멘토링 게시판', desc:'글은 관리자만 쓰고, 나머지는 댓글로 참여합니다.',
+    links:[
+      { name:'멘토링 게시판', url:'https://kartsgifted.github.io/musicboard/', tag:'open' },
+      { name:'게시판 관리자', url:'https://kartsgifted.github.io/musicboard/admin.html', tag:'admin' },
+    ]},
+  { f:'dance', title:'무용분야 심화 멘토링', desc:'참석 회신·확정 일정 안내와 비대면 멘토링 대기실입니다.',
+    links:[
+      { name:'멘토링 일정 안내·회신', url:'https://kartsgifted.github.io/b_apply/', tag:'open', label:'학생' },
+      { name:'학생 대기실', url:'https://kartsgifted.github.io/b_apply/zoom.html', tag:'open', label:'학생' },
+      { name:'멘토 자료', url:'https://kartsgifted.github.io/b_apply/mentor.html', tag:'code', label:'멘토' },
+      { name:'대기실 운영', url:'https://kartsgifted.github.io/b_apply/room.html', tag:'admin', label:'운영진' },
+      { name:'멘토링 응답 현황', url:'https://kartsgifted.github.io/b_apply/admin.html', tag:'admin' },
+    ]},
+  { f:'trad', title:'융합창작 심화과정 참여 신청', desc:'전통예술분야 심화과정 신청서와 신청 현황입니다. (신청 기간 9.22~9.27 종료)',
+    links:[
+      { name:'참여 신청', url:'https://kartsgifted.github.io/cc_apply/', tag:'closed', label:'신청 종료' },
+      { name:'신청 현황', url:'https://kartsgifted.github.io/cc_apply/admin.html', tag:'admin' },
+    ]},
+  { f:'all', title:'업무보고', desc:'수행기관이 주간·월간 업무를 입력하고, 케이브레인이 취합합니다.',
+    links:[
+      { name:'업무보고 작성 (수행기관)', url:'https://kartsgifted.github.io/report/', tag:'code', label:'로그인' },
+      { name:'업무보고 취합 (케이브레인)', url:'https://kartsgifted.github.io/report/admin.html', tag:'admin' },
+    ]},
+];
+
+/* ================================================================
+   화면 그리기
+   ================================================================ */
+const COLOR = { music:'var(--music)', dance:'var(--dance)', trad:'var(--trad)', art:'var(--art)', all:'var(--all)' };
+const FNAME = { music:'음악', dance:'무용', trad:'전통예술', art:'미술', all:'전체 분야' };
+const TAG = { open:['t-open','공개'], code:['t-code','접근코드'], admin:['t-admin','관리자'], closed:['t-closed','마감'] };
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const view = id => 'https://drive.google.com/file/d/' + id + '/view';
+const down = id => 'https://drive.google.com/uc?export=download&id=' + id;
+const shortUrl = u => u.replace(/^https?:\/\//,'').replace(/\/(edit|view)$/,'').replace(/\/$/,'');
+const WD = ['일','월','화','수','목','금','토'];
+const fmtDate = s => { const [y,m,d] = s.split('-').map(Number); const w = new Date(y, m-1, d).getDay(); return `${y}.${m}.${d} (${WD[w]})`; };
+const tagHtml = (t, label) => { const [c,n] = TAG[t] || TAG.open; return `<span class="tag ${c}">${esc(label || n)}</span>`; };
+const ARROW = '<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>';
+const COPY = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>';
+
+function linkRow(l, extra){
+  return `<div class="lk" data-s="${esc((extra||'') + ' ' + l.name + ' ' + l.url + ' ' + (l.label||'') + ' ' + (TAG[l.tag]||TAG.open)[1])}">
+    <a class="tx" href="${esc(l.url)}" target="_blank" rel="noopener"><span class="nm">${esc(l.name)}</span><span class="url">${esc(shortUrl(l.url))}</span></a>
+    ${tagHtml(l.tag, l.label)}
+    <button class="copy" type="button" data-copy="${esc(l.url)}" aria-label="${esc(l.name)} 주소 복사" title="주소 복사">${COPY}</button>
+    <a href="${esc(l.url)}" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">${ARROW}</a>
+  </div>`;
+}
+
+document.getElementById('siteList').innerHTML = SITES.map(s => `
+  <article class="site" data-card>
+    <p class="kind">${esc(s.kind)}</p>
+    <h3>${esc(s.title)}</h3>
+    <p class="desc">${esc(s.desc)}</p>
+    <div class="links">${s.links.map(l => linkRow(l, s.kind + ' ' + s.title)).join('')}</div>
+  </article>`).join('');
+
+document.getElementById('fieldList').innerHTML = FIELDS.map(f => {
+  const groups = WORKSHOP.map(g => {
+    const items = g.items.filter(it => it.v[f.key]);
+    if(!items.length) return '';
+    return `<div class="grp"><p class="grp-t">${esc(g.group)}</p>${items.map(it => {
+      const v = it.v[f.key];
+      const s = esc(`${f.name} ${f.en} ${g.group} ${it.name} ${it.status||''}`);
+      const st = it.status ? tagHtml('closed', it.status) : '';
+      const btns = it.type === 'web'
+        ? `<a class="b pri" href="${esc(v)}" target="_blank" rel="noopener">열기</a>`
+        : `<a class="b pri" href="${esc(view(v))}" target="_blank" rel="noopener">보기</a><a class="b" href="${esc(down(v))}" target="_blank" rel="noopener">받기</a>`;
+      return `<div class="item" data-s="${s}"><span class="nm">${esc(it.name)}${st}</span><span class="btns">${btns}</span></div>`;
+    }).join('')}</div>`;
+  }).join('');
+  const n = WORKSHOP.reduce((a,g) => a + g.items.filter(it => it.v[f.key]).length, 0);
+  return `<article class="field" data-f="${f.key}" data-card style="--c:${COLOR[f.key]}">
+    <div class="field-hd"><i class="dot" style="background:${COLOR[f.key]}"></i><b>${esc(f.name)}</b><span>자료 ${n}개</span></div>${groups}</article>`;
+}).join('');
+
+const ORDER = ['music','dance','trad','art','all'];
+document.getElementById('meetingList').innerHTML = ORDER.map(k => {
+  const rows = MEETINGS.filter(m => m.f === k);
+  if(!rows.length) return '';
+  return `<div class="mt-grp" data-f="${k}" data-card style="--c:${COLOR[k]}">
+    <div class="mt-f"><i class="dot" style="background:${COLOR[k]}"></i><div>${esc(FNAME[k])}<small>${rows.length}회</small></div></div>
+    <div class="mt-rows">${rows.map(m => `
+      <div class="mt-row" data-s="${esc(`${FNAME[k]} 평가회의 ${m.round} ${m.date} ${fmtDate(m.date)} 회의록 녹취`)}">
+        <span class="rd">${esc(m.round)}</span>
+        <span class="dt">${fmtDate(m.date)}</span>
+        <span class="btns">
+          ${m.doc ? `<a class="b pri" href="${esc(m.doc)}" target="_blank" rel="noopener">회의록</a>` : `<span class="b off" title="회의록 없음">회의록 없음</span>`}
+          <a class="b" href="${esc(view(m.rec))}" target="_blank" rel="noopener">녹취</a>
+        </span>
+      </div>`).join('')}</div>
+  </div>`;
+}).join('');
+
+document.getElementById('opList').innerHTML = OPS.map(o => `
+  <article class="op" data-card style="--c:${COLOR[o.f]}">
+    <div class="op-hd"><i class="dot" style="background:${COLOR[o.f]}"></i><b>${esc(o.title)}</b><span class="fl">${esc(FNAME[o.f])}</span></div>
+    <p class="desc">${esc(o.desc)}</p>
+    ${o.links.map(l => linkRow(l, FNAME[o.f] + ' ' + o.title)).join('')}
+  </article>`).join('');
+
+/* 분야 고르기 (워크숍 자료·평가회의 함께) */
+let FIELD = 'all-fields';
+let saved; try { saved = localStorage.getItem('hub-field'); } catch(e){}
+if(saved && (saved === 'all-fields' || FIELDS.some(f => f.key === saved))) FIELD = saved;
+document.querySelectorAll('[data-chips]').forEach(box => {
+  box.innerHTML = `<button class="chip" type="button" data-k="all-fields">전체</button>` +
+    FIELDS.map(f => `<button class="chip" type="button" data-k="${f.key}"><i class="dot" style="background:${COLOR[f.key]}"></i>${esc(f.name)}</button>`).join('');
+});
+document.addEventListener('click', e => {
+  const c = e.target.closest('.chip');
+  if(c){ FIELD = c.dataset.k; try{ localStorage.setItem('hub-field', FIELD); }catch(err){} apply(); }
+});
+
+/* 검색 */
+const q = document.getElementById('q');
+const box = document.getElementById('searchBox');
+const norm = s => s.toLowerCase().replace(/\s+/g,'');
+function apply(){
+  document.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.k === FIELD));
+  const term = norm(q.value);
+  box.classList.toggle('has', !!q.value);
+  let total = 0;
+  document.querySelectorAll('section').forEach(sec => {
+    let secHits = 0;
+    sec.querySelectorAll('[data-card]').forEach(card => {
+      const f = card.dataset.f;
+      const fieldOk = !f || FIELD === 'all-fields' || f === FIELD || (f === 'all' && sec.id === 'meetings');
+      let hits = 0;
+      card.querySelectorAll('[data-s]').forEach(el => {
+        const ok = fieldOk && (!term || norm(el.dataset.s + ' ' + el.textContent).includes(term));
+        el.classList.toggle('hide', !ok);
+        if(ok) hits++;
+      });
+      card.querySelectorAll('.grp').forEach(g => g.classList.toggle('hide', !g.querySelector('[data-s]:not(.hide)')));
+      card.classList.toggle('hide', !hits);
+      secHits += hits;
+    });
+    sec.classList.toggle('hide', !secHits);
+    total += secHits;
+  });
+  document.getElementById('empty').style.display = total ? 'none' : 'block';
+}
+q.addEventListener('input', apply);
+document.getElementById('clear').addEventListener('click', () => { q.value=''; apply(); q.focus(); });
+document.addEventListener('keydown', e => {
+  if(e.key === '/' && document.activeElement !== q){ e.preventDefault(); q.focus(); }
+  if(e.key === 'Escape' && document.activeElement === q){ q.value=''; apply(); }
+});
+
+/* 주소 복사 */
+const toast = document.getElementById('toast');
+let tt;
+function say(msg){ toast.textContent = msg; toast.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('on'), 1800); }
+document.addEventListener('click', async e => {
+  const b = e.target.closest('[data-copy]');
+  if(!b) return;
+  const url = b.dataset.copy;
+  try { await navigator.clipboard.writeText(url); say('주소를 복사했습니다'); }
+  catch(err){
+    const t = document.createElement('textarea'); t.value = url; t.style.position='fixed'; t.style.opacity='0';
+    document.body.appendChild(t); t.select();
+    let ok = false; try { ok = document.execCommand('copy'); } catch(e2){}
+    t.remove();
+    say(ok ? '주소를 복사했습니다' : '복사하지 못했습니다 — 길게 눌러 복사해 주세요');
+  }
+});
+
+/* 지금 보는 구간 표시 */
+const navLinks = [...document.querySelectorAll('.nav a')];
+const io = new IntersectionObserver(es => {
+  es.forEach(en => { if(en.isIntersecting){ navLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + en.target.id)); } });
+}, { rootMargin:'-40% 0px -55% 0px' });
+document.querySelectorAll('section').forEach(s => io.observe(s));
+
+apply();
+</script>
+</body>
+</html>

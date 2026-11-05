@@ -56,7 +56,7 @@
   .search.has .clear{display:grid}.search.has .key{display:none}
 
   /* 바로가기 */
-  .quick{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:34px}
+  .quick{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:34px}
   .q .go{position:absolute;inset:0;border-radius:12px}
   .q{position:relative;display:flex;align-items:center;gap:13px;padding:14px 16px;border-radius:12px;background:var(--band-2);border:1px solid transparent;transition:border-color .15s,background .15s;min-width:0}
   .q:hover{border-color:#4A4D53;background:#33363C}
@@ -207,7 +207,7 @@
   .toast.on{opacity:1;transform:translate(-50%,0)}
   .toast svg{color:var(--yel)}
 
-  @media (max-width:1060px){ .quick{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media (max-width:860px){ .quick{grid-template-columns:minmax(0,1fr)} }
   @media (max-width:980px){
     .row{grid-template-columns:minmax(0,1fr);gap:14px}
     .m{grid-template-columns:84px minmax(0,1fr) auto;grid-template-areas:"d f b" "d r b";gap:2px 16px}
@@ -382,11 +382,6 @@ const OPS = [
       { name:'참여 신청서', url:'https://kartsgifted.github.io/cc_apply/', tag:'closed', label:'신청 종료' },
       { name:'신청 현황', url:'https://kartsgifted.github.io/cc_apply/admin.html', tag:'admin', code:'karts2026' },
     ]},
-  { f:'all', title:'업무보고', desc:'수행기관이 주간·월간 업무를 입력하고, 케이브레인컴퍼니가 취합합니다.',
-    links:[
-      { name:'업무보고 작성', url:'https://kartsgifted.github.io/report/', tag:'code', label:'수행기관' },
-      { name:'업무보고 취합', url:'https://kartsgifted.github.io/report/admin.html', tag:'admin' },
-    ]},
 ];
 
 /* 맨 위 「자주 여는 곳」 — 위 목록의 이름과 주소를 그대로 씁니다 */
@@ -394,7 +389,6 @@ const QUICK = [
   { name:'홈페이지',      url:'https://kartsproject.github.io/home/', icon:'home' },
   { name:'아카이빙',      url:'https://kartsproject.github.io/archive/', icon:'film', code:'karts2026admin' },
   { name:'워크숍 자료실', url:'https://kartsgifted.github.io/workshop/', icon:'folder' },
-  { name:'업무보고',      url:'https://kartsgifted.github.io/report/', icon:'report' },
 ];
 
 /* ================================================================
@@ -508,7 +502,7 @@ const pMeet = `
 
 /* 4. 운영 페이지 */
 const pOps = `
-  <div class="p-head"><div><h2>운영 페이지</h2><p>심화 멘토링·신청·업무보고에 쓰는 페이지입니다.</p></div>${legend}</div>
+  <div class="p-head"><div><h2>운영 페이지</h2><p>분야별 심화 멘토링과 참여 신청에 쓰는 페이지입니다.</p></div>${legend}</div>
   <div class="rows">${OPS.map(o => rowBlock(
     `<p class="sub">${dot(o.f)}${esc(FNAME[o.f])}</p><h3>${esc(o.title)}</h3><p>${esc(o.desc)}</p>`, o.links, FNAME[o.f] + ' ' + o.title)).join('')}</div>`;
 

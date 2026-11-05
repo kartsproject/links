@@ -57,12 +57,13 @@
 
   /* 바로가기 */
   .quick{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:34px}
-  .q{display:flex;align-items:center;gap:13px;padding:14px 16px;border-radius:12px;background:var(--band-2);border:1px solid transparent;transition:border-color .15s,background .15s;min-width:0}
+  .q .go{position:absolute;inset:0;border-radius:12px}
+  .q{position:relative;display:flex;align-items:center;gap:13px;padding:14px 16px;border-radius:12px;background:var(--band-2);border:1px solid transparent;transition:border-color .15s,background .15s;min-width:0}
   .q:hover{border-color:#4A4D53;background:#33363C}
   .q .qi{flex:none;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:#3A3D43;color:var(--yel)}
-  .q .qt{min-width:0}
-  .q b{display:block;font-size:15.5px;font-weight:700}
-  .q span{display:block;font-size:12.5px;color:var(--band-soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .q .qt{min-width:0;flex:1;display:flex;flex-direction:column;align-items:flex-start}
+  .q .qt > b{display:block;font-size:15.5px;font-weight:700}
+  .q .qt > span:not(.code){display:block;font-size:12.5px;color:var(--band-soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .q svg.out{margin-left:auto;flex:none;color:#7C8086}
   .q:hover svg.out{color:var(--yel)}
   .quick-l{font-size:13px;font-weight:600;color:var(--band-soft);margin-top:30px}
@@ -121,6 +122,19 @@
   .tile .t1{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .tile .nm{font-size:16px;font-weight:700}
   .tile .url{display:block;font-size:12.5px;color:var(--faint);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .code{position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px;margin-top:9px;padding:4px 4px 4px 10px;border-radius:8px;background:var(--yel-lt);max-width:100%}
+  .code .ck{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--yel-ink);white-space:nowrap}
+  .code b{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;font-weight:700;color:var(--ink);letter-spacing:.01em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;user-select:all}
+  .cbtn{flex:none;height:24px;padding:0 9px;border-radius:6px;background:var(--paper);font-size:12px;font-weight:700;color:var(--ink);border:1px solid rgba(110,82,0,.18)}
+  .cbtn:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .code.dk{background:rgba(242,194,48,.14);margin-top:6px;padding:3px 3px 3px 7px;gap:6px}
+  .code.dk b{font-size:12px;letter-spacing:0}
+  .code.dk .ck svg{width:12px;height:12px}
+  .code.dk .cbtn{height:22px;padding:0 8px}
+  .code.dk .ck{color:var(--yel)}
+  .code.dk b{color:#fff}
+  .code.dk .cbtn{background:transparent;color:var(--band-tx);border-color:rgba(255,255,255,.22)}
+  .code.dk .cbtn:hover{background:var(--yel);color:var(--ink);border-color:var(--yel)}
   .tile .copy{position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:1}
   .copy{width:34px;height:34px;border-radius:8px;display:grid;place-items:center;color:var(--faint)}
   .copy:hover{background:var(--desk);color:var(--ink)}
@@ -212,7 +226,11 @@
     .quick-l{margin-top:24px}
     .quick{gap:8px}
     .q{padding:12px;gap:10px}.q .qi{width:32px;height:32px}.q svg.out{display:none}
-    .q b{font-size:14.5px}.q .qt > span{display:none}
+    .quick{grid-template-columns:minmax(0,1fr)}
+    .q{padding:10px 12px;min-height:54px}
+    .q .qt{flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
+    .q .qt > b{font-size:15px}.q .qt > span:not(.code){display:none}
+    .q .code.dk{margin-top:0}
     .tabs{margin-top:26px}
     .tab{height:44px;padding:0 15px;font-size:15px}
     .tab[aria-selected="true"]{height:50px}
@@ -264,6 +282,7 @@
 /* ================================================================
    링크 목록 — 주소가 바뀌면 이 부분만 고치면 됩니다.
    tag: open 공개 / code 접근코드 / admin 관리자 / closed 마감
+   code: 그 페이지에 들어갈 때 넣는 접근코드 (있을 때만 적으면 카드에 표시됨)
    ================================================================ */
 const FIELDS = [
   { key:'music', name:'음악' },
@@ -280,8 +299,8 @@ const SITES = [
     ]},
   { sub:'아카이빙 사이트', title:'아카이빙', desc:'워크숍·심화 멘토링·겨울캠프의 영상·사진·작품을 모은 사이트입니다. 교강사·운영진·발주기관이 접근코드와 이름으로 들어갑니다.',
     links:[
-      { name:'아카이빙 열람', url:'https://kartsproject.github.io/archive/', tag:'code' },
-      { name:'아카이브 관리자', url:'https://kartsproject.github.io/archive/admin.html', tag:'admin' },
+      { name:'아카이빙 열람', url:'https://kartsproject.github.io/archive/', tag:'code', code:'karts2026admin' },
+      { name:'아카이브 관리자', url:'https://kartsproject.github.io/archive/admin.html', tag:'admin', code:'karts2026admin' },
     ]},
   { sub:'온라인 자료 공유', title:'워크숍 자료실', desc:'분야별 리플렛·만족도 조사·분석 보고서·평가회의 자료를 모은 페이지입니다. 내용은 관리 시트에서 고칩니다.',
     links:[
@@ -348,20 +367,20 @@ const OPS = [
   { f:'music', title:'음악분야 멘토링 게시판', desc:'글은 관리자만 쓰고, 나머지는 댓글로 참여합니다.',
     links:[
       { name:'멘토링 게시판', url:'https://kartsgifted.github.io/musicboard/', tag:'open' },
-      { name:'게시판 관리자', url:'https://kartsgifted.github.io/musicboard/admin.html', tag:'admin' },
+      { name:'게시판 관리자', url:'https://kartsgifted.github.io/musicboard/admin.html', tag:'admin', code:'karts2026' },
     ]},
   { f:'dance', title:'무용분야 심화 멘토링', desc:'참석 회신·확정 일정 안내와 비대면 멘토링 대기실입니다.',
     links:[
       { name:'일정 안내·회신', url:'https://kartsgifted.github.io/b_apply/', tag:'open', label:'학생용' },
       { name:'학생 대기실', url:'https://kartsgifted.github.io/b_apply/zoom.html', tag:'open', label:'학생용' },
-      { name:'멘토 자료', url:'https://kartsgifted.github.io/b_apply/mentor.html', tag:'code', label:'멘토용' },
-      { name:'대기실 운영', url:'https://kartsgifted.github.io/b_apply/room.html', tag:'admin', label:'운영진' },
-      { name:'응답 현황', url:'https://kartsgifted.github.io/b_apply/admin.html', tag:'admin' },
+      { name:'멘토 자료', url:'https://kartsgifted.github.io/b_apply/mentor.html', tag:'code', label:'멘토용', code:'karts2026' },
+      { name:'대기실 운영', url:'https://kartsgifted.github.io/b_apply/room.html', tag:'admin', label:'운영진', code:'karts2026' },
+      { name:'응답 현황', url:'https://kartsgifted.github.io/b_apply/admin.html', tag:'admin', code:'karts2026' },
     ]},
   { f:'trad', title:'융합창작 심화과정 참여 신청', desc:'전통예술분야 심화과정 신청서와 신청 현황입니다. 신청은 9월 27일에 끝났습니다.',
     links:[
       { name:'참여 신청서', url:'https://kartsgifted.github.io/cc_apply/', tag:'closed', label:'신청 종료' },
-      { name:'신청 현황', url:'https://kartsgifted.github.io/cc_apply/admin.html', tag:'admin' },
+      { name:'신청 현황', url:'https://kartsgifted.github.io/cc_apply/admin.html', tag:'admin', code:'karts2026' },
     ]},
   { f:'all', title:'업무보고', desc:'수행기관이 주간·월간 업무를 입력하고, 케이브레인컴퍼니가 취합합니다.',
     links:[
@@ -373,7 +392,7 @@ const OPS = [
 /* 맨 위 「자주 여는 곳」 — 위 목록의 이름과 주소를 그대로 씁니다 */
 const QUICK = [
   { name:'홈페이지',      url:'https://kartsproject.github.io/home/', icon:'home' },
-  { name:'아카이빙',      url:'https://kartsproject.github.io/archive/', icon:'film' },
+  { name:'아카이빙',      url:'https://kartsproject.github.io/archive/', icon:'film', code:'karts2026admin' },
   { name:'워크숍 자료실', url:'https://kartsgifted.github.io/workshop/', icon:'folder' },
   { name:'업무보고',      url:'https://kartsgifted.github.io/report/', icon:'report' },
 ];
@@ -412,18 +431,24 @@ const dot = k => `<i class="dot" style="--c:${COLOR[k]}"></i>`;
 const ext = (href, cls, inner) => `<a class="${cls}" href="${esc(href)}" target="_blank" rel="noopener">${inner}</a>`;
 
 document.getElementById('quick').innerHTML = QUICK.map(x => `
-  <a class="q" href="${esc(x.url)}" target="_blank" rel="noopener">
+  <div class="q">
+    <a class="go" href="${esc(x.url)}" target="_blank" rel="noopener" aria-label="${esc(x.name)} 열기"></a>
     <span class="qi">${svg(IC[x.icon], 19, 2)}</span>
-    <span class="qt"><b>${esc(x.name)}</b><span>${esc(shortUrl(x.url))}</span></span>
+    <span class="qt"><b>${esc(x.name)}</b><span>${esc(shortUrl(x.url))}</span>${codeRow(x.code, true)}</span>
     ${svg(IC.out, 16, 2.2).replace('<svg', '<svg class="out"')}
-  </a>`).join('');
+  </div>`).join('');
 
+function codeRow(code, dark){
+  if(!code) return '';
+  return `<span class="code${dark ? ' dk' : ''}"><span class="ck" title="접근코드">${svg(IC.code, 13, 2.2)}${dark ? '' : '접근코드'}</span><b>${esc(code)}</b>`
+    + `<button class="cbtn" type="button" data-copy="${esc(code)}" data-what="code" aria-label="접근코드 ${esc(code)} 복사">복사</button></span>`;
+}
 function tile(l, ctx){
   return `<div class="tile" data-s="${esc(ctx + ' ' + l.name + ' ' + l.url + ' ' + (l.label||'') + ' ' + (TAG[l.tag]||TAG.open)[1])}">
     <a class="go" href="${esc(l.url)}" target="_blank" rel="noopener" aria-label="${esc(l.name)} 열기"></a>
     ${ticon(l.tag)}
     <span class="tx"><span class="t1"><span class="nm">${esc(l.name)}</span>${badge(l.tag, l.label)}</span>
-    <span class="url">${esc(shortUrl(l.url))}</span></span>
+    <span class="url">${esc(shortUrl(l.url))}</span>${codeRow(l.code)}</span>
     <button class="copy" type="button" data-copy="${esc(l.url)}" aria-label="${esc(l.name)} 주소 복사" title="주소 복사">${svg(IC.copy, 16)}</button>
   </div>`;
 }
@@ -617,11 +642,12 @@ document.addEventListener('click', async e => {
   const b = e.target.closest('[data-copy]'); if(!b) return;
   e.preventDefault();
   const url = b.dataset.copy;
-  try{ await navigator.clipboard.writeText(url); say('주소를 복사했습니다', true); }
+  const what = b.dataset.what === 'code' ? '접근코드를' : '주소를';
+  try{ await navigator.clipboard.writeText(url); say(what + ' 복사했습니다', true); }
   catch(err){
     const t = document.createElement('textarea'); t.value = url; t.style.cssText = 'position:fixed;opacity:0';
     document.body.appendChild(t); t.select(); let ok = false; try{ ok = document.execCommand('copy'); }catch(e2){} t.remove();
-    say(ok ? '주소를 복사했습니다' : '복사하지 못했습니다. 주소를 길게 눌러 복사해 주세요', ok);
+    say(ok ? what + ' 복사했습니다' : '복사하지 못했습니다. 길게 눌러 직접 복사해 주세요', ok);
   }
 });
 
